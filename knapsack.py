@@ -26,33 +26,33 @@ def ks_brute_force(items: List[Tuple[int]], capacity: int) -> int:
 
 if __name__ == "__main__":
     # Example usage of ks_brute_force
-    items = [(2, 16), (10, 10), (15, 3)]
-    capacity = 25
+    items = [(3, 10), (4, 15), (5, 30), (7, 40)]
+    capacity = 10
     max_value = ks_brute_force(items, capacity)
     print(f"Maximum value for given items and capacity: {max_value}")
 
 #Implementation 2
-def ks_rec(x, y):
+def ks_rec(items, x, y):
     # Base cases
-    if x == 0:
+    if x == 0 or y == 0:
         return 0
-    if y == 0:
-        return 0
-
 
     if items[x - 1][0] > y:
-        # cur item's weight > then available capacity
-        return ks_rec(x - 1, y)
+        # Weight is more than the available capacity
+        return ks_rec(items, x - 1, y)
     else:
-        # Returns max profit achieved by including or excluding the current item.
-        return max(ks_rec(x - 1, y), ks_rec(x - 1, y - items[x - 1][0]) + items[x - 1][1])
+        # Return the max of two cases: including or excluding the current item
+        return max(
+            ks_rec(items, x - 1, y),
+            ks_rec(items, x - 1, y - items[x - 1][0]) + items[x - 1][1]
+        )
 
+# example for function operation
 # format: (weight, profit)
-items = [(3, 10), (4, 15), (5, 30), (7, 40)] # example inorder to not make items "unresolved"
+items = [(3, 10), (4, 15), (5, 30), (7, 40)]
+max_value = ks_rec(items, len(items), 10)
+print("Maximum value:", max_value)
 
-max_value = ks_rec(len(items), 10)
-
-print("Max:", max_value)
 
 # Bottom-up
 def ks_bottom_up(items, capacity):
