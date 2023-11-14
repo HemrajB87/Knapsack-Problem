@@ -25,7 +25,7 @@ def num_of_wc_runs(n, m):
     return bottom_up[n][m]
 
 # example for function operation
-n = 105
+n = 100
 m = 1
 result = num_of_wc_runs(n, m)
 print(f"Number of worst-case runs for {m} bricks and {n} force settings: {result}")
