@@ -3,7 +3,7 @@ import random
 
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('TkAgg')
+matplotlib.use('TkAgg') # backend (https://matplotlib.org/stable/users/explain/figure/backends.html)
 
 from knapsack import ks_brute_force, ks_rec
 
@@ -42,6 +42,7 @@ for item_count in item_counts:
     rec_time = measure_runtime(ks_rec, items, item_count, max_weight)
     ks_rec_runtimes.append(rec_time)
 
+# Reference: https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html
 
 fig, ax = plt.subplots(figsize=(10, 6))  # Create a new figure and axis
 ax.plot(item_counts, brute_force_runtimes, label='ks_brute_force')
